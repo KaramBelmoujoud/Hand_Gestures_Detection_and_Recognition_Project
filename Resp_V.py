@@ -85,7 +85,6 @@ def pre_process_Keypoint_history(image, point_history):
 
     return temp_point_history
 
-###################################################
 
 
 class PoseClassifier(object):
