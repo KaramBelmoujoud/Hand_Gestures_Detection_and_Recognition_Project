@@ -90,7 +90,7 @@ def pre_process_Keypoint_history(image, point_history):
 class PoseClassifier(object):
     def __init__(
         self,
-        model_path='keypoint_classifier.tflite',
+        model_path='Model/keypoint_classifier.tflite',
         num_threads=1,
     ):
         self.interpreter = tf.lite.Interpreter(model_path=model_path,
@@ -125,7 +125,7 @@ Pose_classifier = PoseClassifier()
 class Classifier(object):
     def __init__(
         self,
-        model_path='Gestures_classifier.tflite',
+        model_path='Model/Gestures_classifier_v.tflite',
         score_th=0.8,
         invalid_value=0,
         num_threads=1,
@@ -172,7 +172,7 @@ Argmax_list = deque(maxlen=history_length)
 use_boundary_recttangle = True
 
 # Camera preparation
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 # Set mediapipe model 
 with mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.5,max_num_hands=1) as hands: 
@@ -209,24 +209,27 @@ with mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.5,ma
                  
 
                 
+                hand_sign_id=0       
+                hand_sign_len = len(pre_processed_Keypoints_list)  
+                
                 if hand_id in (0, 1):
                     landmark_index = 8 if hand_id == 0 else 12
                     Keypoints_history.append(landmark_list[landmark_index])
+                    if hand_sign_len == (history_length * 2):
+                        hand_sign_id = keypoint_classifier(pre_processed_Keypoints_list)
                     action_detected = [1, 2] if hand_id == 0 else [3, 4]
+                    Argmax_list.append(hand_sign_id)
+                    most_common_fg_id = Counter(
+                    Argmax_list).most_common()
+                    if most_common_fg_id[0][0] in action_detected:
+                        ActionDetected = most_common_fg_id[0][0]
         
                 else:
                     Keypoints_history.append([0, 0])
 
-                hand_sign_id=0       
-                hand_sign_len = len(pre_processed_Keypoints_list)  
-                if hand_sign_len == (history_length * 2):
-                        hand_sign_id = keypoint_classifier(pre_processed_Keypoints_list)
+                
 
-                Argmax_list.append(hand_sign_id)
-                most_common_fg_id = Counter(
-                    Argmax_list).most_common()
-                if most_common_fg_id[0][0] in action_detected:
-                        ActionDetected = most_common_fg_id[0][0]
+                
                 print(actions[ActionDetected])
 
        # Screen reflection 
