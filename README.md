@@ -4,4 +4,4 @@ Project for detecting and recognizing hand gestures using computer vision and ma
 The project involves capturing video data of a person's hand using a camera, then using image processing techniques to extract relevant features from the video frames, such as the position, orientation, and shape of the hand. These features are then fed into a machine learning model, which has been trained on a dataset of labeled hand gesture data, allowing it to classify the gestures based on the extracted features
 
 # Final Results
-<video src='your URL here' width=180/>
+<video src='Results.mp4' width=180/>
