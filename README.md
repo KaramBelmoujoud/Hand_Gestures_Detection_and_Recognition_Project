@@ -20,4 +20,4 @@ Run the main script to start the hand and face detection and gesture classificat
 
 # Final Results
 
-Results.mp4
+A link to my video result can be found <a href="Results.mp4" >Results.mp4</a> 
