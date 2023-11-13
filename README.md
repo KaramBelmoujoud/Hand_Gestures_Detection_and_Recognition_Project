@@ -6,7 +6,7 @@ The project involves capturing video data of a person's hand using a camera, the
 # Installation
 Clone the repository to your local machine:
 
-https://github.com/oussama95boussaid/Hand_Gestures_Detection_and_Recognition_Project.git
+    https://github.com/oussama95boussaid/Hand_Gestures_Detection_and_Recognition_Project.git
 
 Install the required dependencies. This project may require OpenCV, TensorFlow, Keras, and other relevant libraries. You can install them using pip or conda:
 - pip install opencv-python 
@@ -16,7 +16,7 @@ Install the required dependencies. This project may require OpenCV, TensorFlow, 
 # Usage
 Run the main script to start the hand and face detection and gesture classification pipeline:
 
-Hand_Detection_&_Recognition_Project_Train_V.ipynb
+    Hand_Detection_&_Recognition_Project_Train_V.ipynb
 
 # Final Results
 
